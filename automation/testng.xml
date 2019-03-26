@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Suite">
+	<test thread-count="5" name="Test">
+		<classes>
+			<class name="com.framework.tests.TopNavigationBarTest" />
+		</classes>
+	</test>
+	<test name="Base Page Navigation Bar Test">
+		<classes>
+			<class name="com.framework.base.BasePageNavTest" />
+		</classes>
+	</test>
+	<!-- <class name="com.framework.utils.BaseTest"/> -->
+	<test name="Login Test">
+		<classes>
+			<class name="com.framework.tests.LoginPageTest" />
+		</classes>
+	</test>
+	<test name="Home Page Test">
+		<classes>
+			<class name="com.framework.tests.HomePageTest" />
+		</classes>
+	</test>
+</suite> <!-- Suite -->
