@@ -22,4 +22,10 @@
 			<class name="com.framework.tests.HomePageTest" />
 		</classes>
 	</test>
+	
+	<test name="Database Login Test">
+		<classes>
+			<class name="com.framework.tests.LoginDatabaseTest" />
+		</classes>
+	</test>
 </suite> <!-- Suite -->
