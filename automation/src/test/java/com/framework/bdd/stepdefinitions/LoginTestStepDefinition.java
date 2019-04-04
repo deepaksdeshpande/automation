@@ -13,6 +13,7 @@ import com.framework.pages.HomePage;
 import com.framework.pages.LoginPage;
 import com.framework.utils.BaseTest;
 
+import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -32,16 +33,16 @@ public class LoginTestStepDefinition extends BaseTest {
 	}
 
 	@Given("Navigate to {string} site")
-	public void navigate_to_site(String url) {
+	public void navigate_to_site(String string) {
 		// Write code here that turns the phrase above into concrete actions
-		driver.get(url);
+		driver.get(string);
 	}
 
 	@Given("click on login link on home page to land on secure sign in page")
 	public void click_on_login_link_on_home_page_to_land_on_secure_sign_in_page() {
 		// Write code here that turns the phrase above into concrete actions
 		AppLandingPage landingPage = new AppLandingPage(driver);
-		WebDriverWait waitDriver = new WebDriverWait(driver, 45);
+		WebDriverWait waitDriver = new WebDriverWait(driver, 30);
 		waitDriver.until(ExpectedConditions.elementToBeClickable(landingPage.getNoThanksBtnOnPopup()));
 		if (landingPage.getCountPopupNoThanksBtn().size() > 0 && landingPage.getNoThanksBtnOnPopup().isDisplayed()) {
 			landingPage.getNoThanksBtnOnPopup().click();
@@ -51,15 +52,23 @@ public class LoginTestStepDefinition extends BaseTest {
 		}
 	}
 
-	@When("user enters {string} and {string}")
-	public void user_enters_and(String username, String password) {
-		// Write code here that turns the phrase above into concrete actions
+	/*
+	 * @When("user enters {string} and {string}") public void user_enters_and(String
+	 * username, String password) { // Write code here that turns the phrase above
+	 * into concrete actions LoginPage loginPage = new LoginPage(driver);
+	 * loginPage.username().clear(); loginPage.password().clear();
+	 * loginPage.username().sendKeys(username);
+	 * loginPage.password().sendKeys(password); }
+	 */
+
+	@When("user enters (.+) and (.+)")
+    public void user_enters_and(String username, String password) throws Throwable {
 		LoginPage loginPage = new LoginPage(driver);
 		loginPage.username().clear();
 		loginPage.password().clear();
 		loginPage.username().sendKeys(username);
 		loginPage.password().sendKeys(password);
-	}
+    }
 
 	@When("user clicks on login button")
 	public void user_clicks_on_login_button() {
@@ -73,5 +82,11 @@ public class LoginTestStepDefinition extends BaseTest {
 		// Write code here that turns the phrase above into concrete actions
 		HomePage homePage = new HomePage(driver);
 		Assert.assertTrue(homePage.searchBox().isDisplayed());
+	}
+	
+	@And("close browsers")
+	public void close_browsers() {
+	    // Write code here that turns the phrase above into concrete actions
+	    driver.quit();
 	}
 }
