@@ -4,7 +4,11 @@
 package com.framework.bdd.stepdefinitions;
 
 import org.junit.runner.RunWith;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 
+import com.framework.pages.AppLandingPage;
 import com.framework.pages.HomePage;
 import com.framework.pages.LoginPage;
 import com.framework.utils.BaseTest;
@@ -36,8 +40,15 @@ public class LoginTestStepDefinition extends BaseTest {
 	@Given("click on login link on home page to land on secure sign in page")
 	public void click_on_login_link_on_home_page_to_land_on_secure_sign_in_page() {
 		// Write code here that turns the phrase above into concrete actions
-		HomePage homePage = new HomePage(driver);
-		homePage.loginLink().click();
+		AppLandingPage landingPage = new AppLandingPage(driver);
+		WebDriverWait waitDriver = new WebDriverWait(driver, 45);
+		waitDriver.until(ExpectedConditions.elementToBeClickable(landingPage.getNoThanksBtnOnPopup()));
+		if (landingPage.getCountPopupNoThanksBtn().size() > 0 && landingPage.getNoThanksBtnOnPopup().isDisplayed()) {
+			landingPage.getNoThanksBtnOnPopup().click();
+			landingPage.loginLink().click();
+		} else {
+			landingPage.loginLink().click();
+		}
 	}
 
 	@When("user enters {string} and {string}")
@@ -60,6 +71,7 @@ public class LoginTestStepDefinition extends BaseTest {
 	@Then("verify user is successfully logged in")
 	public void verify_user_is_successfully_logged_in() {
 		// Write code here that turns the phrase above into concrete actions
-
+		HomePage homePage = new HomePage(driver);
+		Assert.assertTrue(homePage.searchBox().isDisplayed());
 	}
 }
