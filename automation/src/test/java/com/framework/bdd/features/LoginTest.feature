@@ -16,4 +16,4 @@ Scenario Outline: Positive test for login
 	Examples: 
 		|username					  |password|
 		|deepak.s.deshpande@gmail.com |abc123|
-		|test@gmail.com				  |abc123|
+		|test99@gmail.com			  |123456|
