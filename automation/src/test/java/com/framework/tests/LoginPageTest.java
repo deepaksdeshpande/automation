@@ -11,7 +11,7 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import com.framework.pages.HomePage;
+import com.framework.pages.AppLandingPage;
 import com.framework.pages.LoginPage;
 import com.framework.utils.BaseTest;
 
@@ -31,7 +31,7 @@ public class LoginPageTest extends BaseTest {
 	@Test(dataProvider = "getData")
 	public void openLoginPage(String username, String password) {
 		LOG.info(":::: Starting openLoginPage Test case ::::::");
-		HomePage homePage = new HomePage(driver);
+		AppLandingPage homePage = new AppLandingPage(driver);
 		driver.get(props.getProperty("url"));
 		homePage.loginLink().click();
 		AssertJUnit.assertEquals(driver.getTitle(), "QaClickAcademy");

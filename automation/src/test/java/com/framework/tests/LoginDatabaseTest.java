@@ -15,7 +15,7 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-import com.framework.pages.HomePage;
+import com.framework.pages.AppLandingPage;
 import com.framework.pages.LoginPage;
 import com.framework.utils.BaseTest;
 
@@ -60,7 +60,7 @@ public class LoginDatabaseTest extends BaseTest {
 		try {
 			stmt = con.createStatement();
 			rs = stmt.executeQuery(query);
-			HomePage homePage = new HomePage(driver);
+			AppLandingPage homePage = new AppLandingPage(driver);
 			homePage.loginLink().click();
 			LoginPage loginPage = new LoginPage(driver);
 			while(rs.next()) {

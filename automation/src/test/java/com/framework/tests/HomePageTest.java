@@ -10,7 +10,7 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-import com.framework.pages.HomePage;
+import com.framework.pages.AppLandingPage;
 import com.framework.utils.BaseTest;
 
 /**
@@ -32,7 +32,7 @@ public class HomePageTest extends BaseTest {
 		String title = new String(
 				"QA Click Academy | Selenium,Jmeter,SoapUI,Appium,Database testing,QA Training Academy");
 		AssertJUnit.assertEquals(driver.getTitle(), title);
-		HomePage homePage = new HomePage(driver);
+		AppLandingPage homePage = new AppLandingPage(driver);
 		AssertJUnit.assertEquals(homePage.featuredCoursesTitle().getText(), "FEATURED COURSES");
 		
 	}
